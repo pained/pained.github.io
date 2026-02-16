@@ -1,0 +1,32 @@
+body {
+  background-color:whitesmoke;
+}
+
+.center {
+  display: flex;
+  justify-content: left;
+}
+
+div {
+  max-width: 80%;
+}
+
+.socialcontainer {
+  display: inline-flex;
+}
+
+.biocontainer {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+
+.biocontainer div {
+  margin: 5px;
+  padding: 2px;
+}
+
+.biocontainer img {
+  max-height: 100%;
+  max-width: 100%;
+}
