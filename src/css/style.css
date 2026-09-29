@@ -152,15 +152,55 @@ a:hover {
   margin: 0 0 var(--space-4);
 }
 
-/* Site nav */
+/* Site header */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: block;
+  flex-shrink: 0;
+  width: 29px;
+  height: 36px;
+}
+
+.brand-mark-block {
+  fill: var(--forest);
+}
+
+.brand-mark-dots {
+  fill: var(--surface);
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--forest);
+  margin: 0;
+}
+
+/* Site nav (shown when the blog is on) */
 
 .sitenav {
   display: flex;
-  justify-content: center;
   gap: var(--space-6);
-  padding-bottom: var(--space-2);
-  margin-bottom: var(--space-12);
-  border-bottom: 1px solid var(--line);
 }
 
 .sitenav a {
@@ -220,12 +260,6 @@ a:hover {
 .biocontainer img {
   display: block;
   border-radius: var(--radius-md);
-}
-
-.biocontainer h1 {
-  font-size: 48px;
-  line-height: 52px;
-  letter-spacing: -0.01em;
 }
 
 .biocontainer h2 {
@@ -395,11 +429,6 @@ a:hover {
   h1 {
     font-size: 32px;
     line-height: 38px;
-  }
-
-  .biocontainer h1 {
-    font-size: 36px;
-    line-height: 40px;
   }
 
   .sidebar {

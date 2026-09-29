@@ -134,7 +134,7 @@ Load them in the `<head>` of `src/_includes/layouts/base.njk`:
 
 | Style | Family | Size / line height | Weight | Use |
 | --- | --- | --- | --- | --- |
-| display | serif | 48 / 52px (36px under 600px) | 600 | Home page name only |
+| display | serif | 48 / 52px (36px under 600px) | 600 | Reserved for a large name treatment; not currently used |
 | h1 | serif | 40 / 46px (32px under 600px) | 600 | Page and post titles |
 | h2 | serif | 28 / 34px | 600 | Sections, blog entry titles |
 | h3 | serif | 22 / 28px | 600 | Sub-sections, box titles |
@@ -162,7 +162,8 @@ Each maps to an existing class or template in the site.
 
 | Component | Where | Spec |
 | --- | --- | --- |
-| Site nav | `.sitenav` in `base.njk` | Centered row, `--space-6` gaps, bold sans `--forest` links, no underline. Current page: 3px `--orange` bar beneath and `aria-current="page"`. `--line` rule under the nav. |
+| Site header | `.site-header` in `base.njk` | Brand mark (36px tall) and "Drew Paine, PhD" in Newsreader 600 at 22px, `--forest`, linking home, on the left. Nav on the right when the blog is on. `--line` rule below, `--space-12` before the page content. |
+| Site nav | `.sitenav` in `.site-header` | Only shown when the blog is on. `--space-6` gaps, bold sans `--forest` links, no underline. Current page: 3px `--orange` bar beneath and `aria-current="page"`. |
 | Post header | `.post-header` in `post.njk` | `h1` title, `lede`, then `byline` in `--ink-muted` ("By Drew Paine, PhD · September 28, 2026"), `--line` rule below. |
 | Callout | `.callout`, `{% callout %}` | Full width. `--oxblood-soft` ground, 1px `--oxblood` border, `--radius-md`, `--space-6` padding, `h3` title in `--oxblood`, text in `--ink`. |
 | Sidebar | `.sidebar`, `{% sidebar %}` | Floats right at 35%, full width under 600px. `--sage` ground, `--radius-md`, optional `label` in `--ink-muted`, `h3` title in `--navy`, `body-small` text. |
@@ -193,5 +194,6 @@ Never remove the focus outline.
 - Spell out an organization on first use with its linked acronym in parentheses: "Better Scientific Software (BSSw)".
 - `&` in role and group names ("Product & User Experience"); "and" in sentences.
 - Write emails out (`pained - at - lbl - dot - gov`); never use `mailto:` links.
-- No emoji, no icons, no logo. Where a mark is needed, set "Drew Paine, PhD" in Newsreader 600.
+- The brand mark is the forest block with its dot grid from the brand guide cover: a `--forest` rounded rectangle (24×30, 3px corners) with ten `--surface` dots stepping up to the right. It appears in the site header, left of "Drew Paine, PhD" in Newsreader 600, and links home. Use it only with the name; don't recolor or redraw it.
+- No emoji and no other icons.
 - Every image needs alt text naming who or what it shows.

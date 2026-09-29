@@ -21,12 +21,27 @@
     </head>
 
     <body>
-        {% if blogEnabled %}
-        <nav class="sitenav">
-            <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
-            <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
-        </nav>
-        {% endif %}
+        <header class="site-header">
+            <a class="brand" href="/">
+                <!-- Brand mark: the forest block with its dot grid, from the brand guide cover -->
+                <svg class="brand-mark" viewBox="0 0 24 30" width="24" height="30" aria-hidden="true">
+                    <rect class="brand-mark-block" width="24" height="30" rx="3"/>
+                    <g class="brand-mark-dots">
+                        <circle cx="6" cy="25" r="1.1"/><circle cx="10" cy="25" r="1.1"/><circle cx="14" cy="25" r="1.1"/><circle cx="18" cy="25" r="1.1"/>
+                        <circle cx="10" cy="21" r="1.1"/><circle cx="14" cy="21" r="1.1"/><circle cx="18" cy="21" r="1.1"/>
+                        <circle cx="14" cy="17" r="1.1"/><circle cx="18" cy="17" r="1.1"/>
+                        <circle cx="18" cy="13" r="1.1"/>
+                    </g>
+                </svg>
+                {% if page.url == "/" %}<h1 class="brand-name">Drew Paine, PhD</h1>{% else %}<span class="brand-name">Drew Paine, PhD</span>{% endif %}
+            </a>
+            {% if blogEnabled %}
+            <nav class="sitenav">
+                <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+                <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+            </nav>
+            {% endif %}
+        </header>
 
         {{ content | safe }}
 
