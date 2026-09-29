@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+---
+{% set postAuthor = authors[author] %}
+<article class="post">
+    <header class="post-header">
+        <h1>{{ title }}</h1>
+        {% if lede %}<p class="lede">{{ lede }}</p>{% endif %}
+        <p class="byline">
+            By <span class="author">{{ postAuthor.name }}</span>
+            &middot;
+            <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+        </p>
+    </header>
+
+    {{ content | safe }}
+
+    {% if postAuthor %}
+    <footer class="author-bio">
+        <img src="{{ postAuthor.photo }}" alt="Photo of {{ postAuthor.name }}" width="96" height="96">
+        <div>
+            <h2 class="label">About the author</h2>
+            <p><strong>{{ postAuthor.name }}</strong> {{ postAuthor.bio }}</p>
+            <p class="author-email">{{ postAuthor.email }}</p>
+        </div>
+    </footer>
+    {% endif %}
+</article>
