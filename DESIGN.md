@@ -86,7 +86,7 @@ Copy these into the top of `src/css/style.css` and style everything through them
 }
 ```
 
-The dark theme is optional. If it isn't added, the site stays light for everyone.
+The site follows the visitor's system setting, and the Light/Dark toggle in the header overrides it. The toggle sets `data-theme="light"` or `data-theme="dark"` on `<html>` and saves the choice in the browser. In `style.css` the dark values appear twice, once for the system setting (`:root:not([data-theme="light"])`) and once for the toggle (`:root[data-theme="dark"]`); change both together. The snippet above shows the simpler system-only version.
 
 ## Color rules
 
@@ -163,6 +163,7 @@ Each maps to an existing class or template in the site.
 | Component | Where | Spec |
 | --- | --- | --- |
 | Site header | `.site-header` in `base.njk` | Brand mark (36px tall) and "Drew Paine, PhD" in Newsreader 600 at 22px, `--forest`, linking home, on the left. Nav on the right when the blog is on. `--line` rule below, `--space-12` before the page content. |
+| Theme toggle | `.theme-toggle` in `.site-header` | Right side of the header. A 36px square icon button: `--forest` icon, 1px `--ink-muted` border, `--radius-sm`, `--forest-soft` on hover. Shows a filled moon in light mode and a sun in dark mode (the mode it switches to), with a matching `aria-label` and tooltip. Hidden when JavaScript is off. |
 | Site nav | `.sitenav` in `.site-header` | Only shown when the blog is on. `--space-6` gaps, bold sans `--forest` links, no underline. Current page: 3px `--orange` bar beneath and `aria-current="page"`. |
 | Post header | `.post-header` in `post.njk` | `h1` title, `lede`, then `byline` in `--ink-muted` ("By Drew Paine, PhD · September 28, 2026"), `--line` rule below. |
 | Callout | `.callout`, `{% callout %}` | Full width. `--oxblood-soft` ground, 1px `--oxblood` border, `--radius-md`, `--space-6` padding, `h3` title in `--oxblood`, text in `--ink`. |
@@ -196,5 +197,5 @@ Never remove the focus outline.
 - `&` in role and group names ("Product & User Experience"); "and" in sentences.
 - Write emails out (`pained - at - lbl - dot - gov`); never use `mailto:` links.
 - The brand mark is the forest block with its dot grid from the brand guide cover: a `--forest` rounded rectangle (24×30, 3px corners) with ten `--surface` dots stepping up to the right. It appears in the site header, left of "Drew Paine, PhD" in Newsreader 600, and links home. Use it only with the name; don't recolor or redraw it.
-- No emoji and no other icons.
+- No emoji. The only icons are the sun and moon on the theme toggle; everywhere else, use text labels.
 - Every image needs alt text naming who or what it shows.

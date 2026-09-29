@@ -9,6 +9,16 @@
         <link rel="stylesheet" href="/css/style.css">
         <title>{% if title %}{{ title }} | {% endif %}Drew Paine, PhD</title>
 
+        <!-- Apply a saved light/dark choice before the page draws, so it doesn't flash -->
+        <script>
+        try {
+            var savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "light" || savedTheme === "dark") {
+                document.documentElement.dataset.theme = savedTheme;
+            }
+        } catch (e) {}
+        </script>
+
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FZ58G4T3W"></script>
         <script>
@@ -35,12 +45,26 @@
                 </svg>
                 {% if page.url == "/" %}<h1 class="brand-name">Drew Paine, PhD</h1>{% else %}<span class="brand-name">Drew Paine, PhD</span>{% endif %}
             </a>
-            {% if blogEnabled %}
-            <nav class="sitenav">
-                <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
-                <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
-            </nav>
-            {% endif %}
+            <div class="header-actions">
+                {% if blogEnabled %}
+                <nav class="sitenav">
+                    <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+                    <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+                </nav>
+                {% endif %}
+                <!-- Hidden until the script below runs, since it does nothing without JavaScript -->
+                <button type="button" class="theme-toggle" aria-label="Switch to dark mode" hidden>
+                    <!-- Moon: shown in light mode, switches to dark -->
+                    <svg class="theme-icon-moon" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
+                        <path d="M16.5 12.2A7 7 0 0 1 7.8 3.5a7 7 0 1 0 8.7 8.7z"/>
+                    </svg>
+                    <!-- Sun: shown in dark mode, switches to light -->
+                    <svg class="theme-icon-sun" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" hidden>
+                        <circle cx="10" cy="10" r="3.5"/>
+                        <path d="M10 1.5v2.5M10 16v2.5M1.5 10H4M16 10h2.5M4 4l1.8 1.8M14.2 14.2L16 16M4 16l1.8-1.8M14.2 5.8L16 4"/>
+                    </svg>
+                </button>
+            </div>
         </header>
 
         {{ content | safe }}
@@ -48,5 +72,41 @@
         <div id="footer" class="center">
             <p>Copyright &copy; 2026 Drew Paine, PhD</p>
         </div>
+        <script>
+        (function () {
+            var button = document.querySelector(".theme-toggle");
+            var moon = button.querySelector(".theme-icon-moon");
+            var sun = button.querySelector(".theme-icon-sun");
+            var root = document.documentElement;
+            var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+            function currentTheme() {
+                return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+            }
+
+            // The icon and label show the mode the button switches to
+            function updateButton() {
+                var next = currentTheme() === "dark" ? "light" : "dark";
+                // SVG elements have no .hidden property, so set the attribute (styled in style.css)
+                moon.toggleAttribute("hidden", next !== "dark");
+                sun.toggleAttribute("hidden", next !== "light");
+                button.setAttribute("aria-label", "Switch to " + next + " mode");
+                button.title = "Switch to " + next + " mode";
+            }
+
+            button.addEventListener("click", function () {
+                var next = currentTheme() === "dark" ? "light" : "dark";
+                root.dataset.theme = next;
+                try { localStorage.setItem("theme", next); } catch (e) {}
+                updateButton();
+            });
+
+            // Keep the label right if the system setting changes and no choice is saved
+            systemDark.addEventListener("change", updateButton);
+
+            updateButton();
+            button.hidden = false;
+        })();
+        </script>
     </body>
 </html>
