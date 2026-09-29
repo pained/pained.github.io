@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,700;1,14..32,400&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+        <link rel="stylesheet" href="/css/style.css">
+        <title>{% if title %}{{ title }} | {% endif %}Drew Paine, PhD</title>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FZ58G4T3W"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-8FZ58G4T3W');
+        </script>
+    </head>
+
+    <body>
+        <nav class="sitenav">
+            <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+            <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+        </nav>
+
+        {{ content | safe }}
+
+        <div id="footer" class="center">
+            <p>Copyright &copy; 2026 Drew Paine, PhD</p>
+        </div>
+    </body>
+</html>
