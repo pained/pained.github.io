@@ -203,19 +203,18 @@ a:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-6);
   text-align: center;
 }
 
+/* Size both columns to their content so the pair sits together in the middle */
 .biocontainer > div {
-  flex: 1 1 300px;
+  flex: 0 1 420px;
   min-width: 0;
 }
 
 .biocontainer > div:first-child {
-  flex: 0 1 300px;
-  display: flex;
-  justify-content: center;
+  flex: 0 0 auto;
 }
 
 .biocontainer img {
