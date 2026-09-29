@@ -94,10 +94,10 @@ The dark theme is optional. If it isn't added, the site stays light for everyone
 - Body text is `--ink`; bylines and captions are `--ink-muted`.
 - Forest is the dominant hue: every title, heading and link is `--forest`. A primary button is a `--forest` fill with `--on-forest` text.
 - Use `--sage` at full strength only for sidebar grounds and rules. It's too close to `--surface` to separate things on its own.
-- Use `--oxblood` only in callouts, and use at most one callout per screen.
+- Use `--oxblood` only in callouts and as a paragraph marker, and use at most one callout per screen.
 - Use `--navy` for sidebar titles and the focus ring.
 - **Orange is never text on a light background.** It's only 2.4:1 against `--surface`. Use it for underlines, the active-nav bar and small rule marks. It can be large text (24px+) on a `--forest` fill, or any text in the dark theme.
-- Pair Forest with at most one other hue per component.
+- Pair Forest with at most one other hue per component. The one exception is the paragraph markers, which cycle through Navy, Oxblood and Orange.
 
 ### Checked contrast pairs
 
@@ -167,6 +167,7 @@ Each maps to an existing class or template in the site.
 | Post header | `.post-header` in `post.njk` | `h1` title, `lede`, then `byline` in `--ink-muted` ("By Drew Paine, PhD · September 28, 2026"), `--line` rule below. |
 | Callout | `.callout`, `{% callout %}` | Full width. `--oxblood-soft` ground, 1px `--oxblood` border, `--radius-md`, `--space-6` padding, `h3` title in `--oxblood`, text in `--ink`. |
 | Sidebar | `.sidebar`, `{% sidebar %}` | Floats right at 35%, full width under 600px. `--sage` ground, `--radius-md`, optional `label` in `--ink-muted`, `h3` title in `--navy`, `body-small` text. |
+| Paragraph markers | `#bio p::before` in `style.css` | A 10×13px block with `--radius-sm` corners, hanging `--space-6` left of each home page bio paragraph, level with the first line. Cycles `--navy`, `--oxblood`, `--orange`, echoing the brand guide cover. Under 600px the paragraphs indent by `--space-6` and the marker sits inside. Decorative only; used on the home page bio, not in posts. |
 | Author bio | `.author-bio` in `post.njk` | `--surface-raised` ground, `--radius-md`, 96px round photo beside the text (stacked, centered under 600px), `label` "About the author", bold name, `body-small` bio, email in `byline` style. |
 | Blog entry | `.post-entry` in `blog/index.njk` | `h2` title as an un-underlined `--forest` link, `byline`, `body-small` summary, bold "Read more →". `--line` rule between entries. |
 
