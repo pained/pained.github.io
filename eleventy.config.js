@@ -2,12 +2,24 @@ import markdownIt from "markdown-it";
 
 const md = markdownIt({ html: true });
 
+// Set to true to publish the blog and show the site menu
+const BLOG_ENABLED = false;
+
 export default function (eleventyConfig) {
   // Files copied to the site as-is
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/CNAME");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+
+  eleventyConfig.addGlobalData("blogEnabled", BLOG_ENABLED);
+
+  // While the blog is off, nothing under src/blog/ is built
+  eleventyConfig.addPreprocessor("blog-off", "*", (data) => {
+    if (!BLOG_ENABLED && data.page.inputPath.startsWith("./src/blog/")) {
+      return false;
+    }
+  });
 
   // Posts with `draft: true` show up in `npm start` previews but are left out of the published build
   eleventyConfig.addPreprocessor("drafts", "*", (data) => {

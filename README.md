@@ -30,6 +30,10 @@ Run `npm run build` before opening a pull request. If it fails, the site won't p
 
 Everything under `src/` is the site. `_site/` is generated output and isn't committed.
 
+## Turning the blog on
+
+The blog is currently off: the site is a single page, with no menu, and nothing under `src/blog/` is published. To turn it on, set `BLOG_ENABLED` to `true` at the top of `eleventy.config.js`. That publishes the blog page and posts and shows the Home / Blog menu on every page.
+
 ## Writing a blog post
 
 1. Copy `src/blog/posts/example-post.md` to a new file in the same folder. The file name becomes the address, e.g. `my-topic.md` → `/blog/my-topic/`. Use lowercase words separated by hyphens.

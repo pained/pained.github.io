@@ -21,10 +21,12 @@
     </head>
 
     <body>
+        {% if blogEnabled %}
         <nav class="sitenav">
             <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
             <a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
         </nav>
+        {% endif %}
 
         {{ content | safe }}
 
