@@ -43,8 +43,10 @@
   --measure: 68ch;
 }
 
+/* Dark theme: follows the system setting unless the visitor picks light or dark with the toggle.
+   Keep the two blocks below identical. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
     --surface: #121710;
     --surface-raised: #1b2218;
@@ -59,6 +61,22 @@
     --navy: #93b8e6;
     --focus: #fb6107;
   }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #121710;
+  --surface-raised: #1b2218;
+  --sage: #3b4337;
+  --ink: #e4e8e0;
+  --ink-muted: #a9b1a4;
+  --forest: #9fcb80;
+  --forest-soft: #1d2c14;
+  --on-forest: #121710;
+  --oxblood: #e8939c;
+  --oxblood-soft: #2e1417;
+  --navy: #93b8e6;
+  --focus: #fb6107;
 }
 
 /* Base */
@@ -201,6 +219,58 @@ a:hover {
 .sitenav {
   display: flex;
   gap: var(--space-6);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* Light/dark toggle */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--forest);
+  background: transparent;
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle svg[hidden] {
+  display: none;
+}
+
+.theme-icon-moon {
+  fill: currentColor;
+}
+
+.theme-icon-sun {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.theme-icon-sun circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.theme-toggle:hover {
+  background-color: var(--forest-soft);
 }
 
 .sitenav a {
